@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fetch API</title>
+   <style>
+       #container {
+         display: grid;
+        grid-template-columns: repeat(4,1fr);
+         gap: 20px;
+         padding: 16px;
+      }
+      .details {
+         border: 1px solid #ddd;
+         border-radius: 8px;
+         padding: 16px;
+       
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         text-align: center;
+      }
+      .details img {
+         max-width: 100%;
+         height: auto;
+         border-radius: 8px;
+         height: 150px;
+      }
+      .Cards{
+         height: 200px;
+      }
+   </style>
+</head>
+<body>
+   <h1>Products Details</h1>
+   <div id="container">
+      <p>Fetching Data.....</p>
+   </div>
+
+</body>
+
+<script>
+
+   const Url = "https://fakestoreapi.com/products"
+
+   async function fetchData() {
+      try{
+
+         const response = await fetch(Url)
+         const data = await response.json()
+         console.log(data)
+
+         const container = document.getElementById("container")
+         container.innerText = "";
+
+         data.map((items)=>{
+            const Card = document.createElement("div")
+            Card.className = "details"
+
+            Card.innerHTML = 
+
+            `
+            <h3>${items.title}</h3>
+            <p>${items.price}</p>
+            <p>${items.category}</p>
+            <img src="${items.image}">
+            <p>${items.rating.rate}</p>
+            `;
+            container.appendChild(Card)
+         })
+         }catch(error){
+            console.log("Something went wrong" , error)
+      }
+   }
+   fetchData()
+
+</script>
+</html>
