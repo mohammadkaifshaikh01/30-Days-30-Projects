@@ -8,6 +8,11 @@ body{
    height: 100vh;
    background-color: hsl(0, 0%, 90%);
 }
+#head{
+   text-align: center;
+   font-size: 50px;
+   margin: 4px;
+}
 
 #calculator{
    background-color: black;

@@ -5,7 +5,7 @@ import Calculator from "./Component/Calculator";
 const App = () => {
   return (
     <main>
-      <h1>Calculator App</h1>
+      <h1 id='head'>Calculator App</h1>
       <Calculator />
     </main>
   );
