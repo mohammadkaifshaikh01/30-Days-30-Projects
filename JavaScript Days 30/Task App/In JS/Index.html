@@ -5,77 +5,127 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Todo App</title>
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" />
    <style>
-      body {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: column;
-         height: 100vh;
-      }
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   height: 100vh;
+   margin: 0;
+   background: linear-gradient(135deg, #1749a4, #42464c);
+   font-family: Arial, sans-serif;
+   color: white;
+}
 
-      .container {
-         width: 400px;
-         background-color: black;
-         color: white;
-         height: 50vh;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         padding: 20px;
-         border-radius: 10px;
-      }
+.container {
+   width: 400px;
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   padding: 20px;
+   border-radius: 15px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
 
-      .input-container {
-         display: flex;
-         /* width: 100%; */
-         align-items: center;
-      }
+.input-container {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+}
 
-      input[type="text"] {
-         width: 70%;
-         padding: 8px;
-         font-size: 1rem;
-         border: 2px solid white;
-         border-radius: 5px;
-         margin-bottom: 10px;
-         outline: none;
-         background-color: transparent;
-         color: white;
-      }
+input[type="text"] {
+   flex: 1;
+   margin-right: 10px;
+   padding: 10px;
+   font-size: 1rem;
+   border: 2px solid white;
+   border-radius: 5px;
+   outline: none;
+   background-color: rgba(255, 255, 255, 0.1);
+   color: white;
+   transition: all 0.3s ease;
+}
 
-      input[type="text"]::placeholder {
-         color: #bbb;
-      }
+input[type="text"]:focus {
+   border-color: #28a745;
+   background-color: rgba(255, 255, 255, 0.2);
+}
 
-      button {
-         padding: 8px 15px;
-         background-color: #28a745;
-         color: white;
-         border: none;
-         width: 10rem;
-         margin: 0;
-         border-radius: 5px;
-         cursor: pointer;
-         font-size: 0.8rem;
-         height: 40px;
-         transition: background-color 0.3s ease;
-      }
+input[type="text"]::placeholder {
+   color: #ccc;
+}
 
-      button:hover {
-         background-color: #218838;
-      }
+button {
+   padding: 10px 15px;
+   background: linear-gradient(135deg, #28a745, #218838);
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: background 0.3s ease, transform 0.2s ease;
+}
 
-      .display {
-         width: 90%;
-         height: 100%;
-         overflow-y: auto;
-         background-color: #222;
-         padding: 10px;
-         border-radius: 5px;
-         box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-      }
+button:hover {
+   background: linear-gradient(135deg, #218838, #1e7e34);
+   transform: scale(1.05);
+}
+
+button:active {
+   background: #929090;
+}
+
+.display {
+   width: 100%;
+   max-height: 200px;
+   overflow-y: auto;
+   background-color: rgba(255, 255, 255, 0.1);
+   padding: 10px;
+   border-radius: 10px;
+   box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.display li {
+   list-style: none;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+   margin-bottom: 10px;
+   background: linear-gradient(135deg, #444, #222);
+   color: white;
+   border-radius: 5px;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+   transition: all 0.3s ease;
+   font-size: 0.9rem;
+   font-weight: 500;
+}
+
+.display li:hover {
+   background: linear-gradient(135deg, #555, #333);
+}
+
+.material-symbols-outlined {
+   font-size: 1.2rem;
+   color: #e74c3c;
+   cursor: pointer;
+   transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+   color: #ff6f61;
+   transform: scale(1.2);
+}
+
    </style>
 
    <div class="container">
@@ -101,10 +151,14 @@
          alert("Task Should Not Be Empty")
       } else {
          let newElement = document.createElement("li")
-         newElement.innerHTML = search.value
+         newElement.innerHTML = `${search.value} <span class="material-symbols-outlined delete"> delete </span>`
          display.appendChild(newElement)
-         search.value = ""
 
+         const newDelete = newElement.querySelector(".delete");
+         newDelete.addEventListener('click',()=>{
+            newElement.remove()
+         })
+ search.value = "";
       }
    }
 
